@@ -1,9 +1,10 @@
-package com.packtpub.e4.clock.ui.views; 
+package com.packtpub.e4.clock.ui.views;
 import java.awt.Color;
 import java.util.*;
 
 import org.eclipse.swt.*;
 import org.eclipse.swt.events.*;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
@@ -12,9 +13,15 @@ import org.eclipse.ui.part.ViewPart;
 public class ClockView extends ViewPart {
 	@SuppressWarnings("unused")
 	public void createPartControl(Composite parent) {
-		final ClockWidget clock1 = new ClockWidget(parent, SWT.NONE);
-		final ClockWidget clock2 = new ClockWidget(parent, SWT.NONE);
-		final ClockWidget clock3 = new ClockWidget(parent, SWT.NONE);//new Canvas(parent,SWT.NONE);
+		Object[] oo=parent.getDisplay().getDeviceData().objects;
+		int c = 0;
+		for (int i = 0; i < oo.length; i++)
+			if (oo[i] instanceof Color)
+				c++;
+		System.err.println("There are " + c + " Color instances");
+		final ClockWidget clock1 = new ClockWidget(parent, SWT.NONE, new RGB(255,0,0));
+		final ClockWidget clock2 = new ClockWidget(parent, SWT.NONE, new RGB(0,255,0));
+		final ClockWidget clock3 = new ClockWidget(parent, SWT.NONE, new RGB(0,0,255));//new Canvas(parent,SWT.NONE);
 		
 		RowLayout layout = new RowLayout(SWT.HORIZONTAL);
 		parent.setLayout(layout);
